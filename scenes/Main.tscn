@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6c12xvctpfc2"]
+
+[ext_resource type="Texture2D" uid="uid://3c8uot3jlnkf" path="res://assets/documents/dummy-letter.png" id="1_rtj2b"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Dummy-letter" type="Sprite2D" parent="."]
+position = Vector2(-127, -41)
+texture = ExtResource("1_rtj2b")

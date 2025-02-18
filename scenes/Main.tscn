@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6c12xvctpfc2"]
+[gd_scene load_steps=3 format=3 uid="uid://c6c12xvctpfc2"]
 
-[ext_resource type="Texture2D" uid="uid://3c8uot3jlnkf" path="res://assets/documents/dummy-letter.png" id="1_rtj2b"]
+[ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
+[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://scenes/Document.tscn" id="2_2uoe8"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Dummy-letter" type="Sprite2D" parent="."]
-position = Vector2(-127, -41)
-texture = ExtResource("1_rtj2b")
+[node name="Documents" type="Node" parent="."]
+script = ExtResource("1_bl5sq")
+
+[node name="Dummy-letter3" parent="Documents" instance=ExtResource("2_2uoe8")]
+
+[node name="Dummy-letter2" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(19, 116)
+
+[node name="Dummy-letter" parent="Documents" instance=ExtResource("2_2uoe8")]

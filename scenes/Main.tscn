@@ -1,12 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6c12xvctpfc2"]
+[gd_scene load_steps=8 format=3 uid="uid://c6c12xvctpfc2"]
 
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
 [ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://scenes/Document.tscn" id="2_2uoe8"]
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ddpk08d1nysw7" path="res://assets/documents/doc1.png" id="3_y3cmu"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
+[ext_resource type="PackedScene" uid="uid://chajdh0arltg1" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_478tm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -29,3 +32,8 @@ texture = ExtResource("3_f8pjf")
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
 texture = ExtResource("4_gd8ix")
+
+[node name="DocumentMenu" parent="." instance=ExtResource("6_lgqyx")]
+position = Vector2(-650, 0)
+
+[connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]

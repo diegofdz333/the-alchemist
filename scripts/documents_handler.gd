@@ -1,8 +1,10 @@
 extends Node
 
+signal dropped(doc)
 signal selected_document_changed(new_doc)
 
 const DOCUMENT_Z = 0; # Lowest document z value
+const DOCUMENT_MENU_Z = 50; # Document menu z value
 
 var document_ordering: Array = [];
 var selected_document = null;
@@ -12,6 +14,7 @@ func _ready():
 	var documents = get_children();
 	for i in range(0, documents.size()):
 		var doc = documents[i];
+		doc.release.connect(_on_document_release)
 		document_ordering.push_back(doc);
 	refresh_z_indeces();
 
@@ -56,4 +59,8 @@ func refresh_z_indeces():
 		var doc: Sprite2D = document_ordering[i];
 		doc.z_index = DOCUMENT_Z + max_z - i - 1;
 		if doc.in_menu or (i == 0 and doc.is_dragging):
-			doc.z_index += $"../DocumentMenu".menu_z
+			doc.z_index += DOCUMENT_MENU_Z
+
+
+func _on_document_release(doc):
+	dropped.emit(doc)

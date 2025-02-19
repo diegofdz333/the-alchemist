@@ -27,4 +27,9 @@ texture_normal = ExtResource("2_b3qwc")
 texture_pressed = ExtResource("3_ir5hi")
 texture_hover = ExtResource("5_j41kt")
 
+[node name="OrganizeButton" type="TextureButton" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
 [connection signal="pressed" from="ExpandButton" to="." method="_on_expand_button_pressed"]
+[connection signal="pressed" from="OrganizeButton" to="." method="_on_organize_button_pressed"]

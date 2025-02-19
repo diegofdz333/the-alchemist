@@ -2,6 +2,8 @@ extends Sprite2D
 
 @export_multiline var text: String;
 
+signal release(doc)
+
 const DELAY = 1;
 
 # Max holding time to be considered "clicked" rather than held
@@ -24,23 +26,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if in_menu and not $"../../DocumentMenu".expanded:
-		hide()
-		set_process_input(false)
-		is_dragging = false
-	else:
-		show()
-		set_process_input(true)
-	
-	if is_dragging and $"../../DocumentMenu".expanded:
-		verify_in_menu()
-
-
-func verify_in_menu():
-	var right = $"../../DocumentMenu".expanded_pos.x + $"../../DocumentMenu".width / 2
-	var top = $"../../DocumentMenu".expanded_pos.y + $"../../DocumentMenu".height / 2
-	var bottom = $"../../DocumentMenu".expanded_pos.y - $"../../DocumentMenu".height / 2
-	in_menu = position.x < right and position.y < top and position.y > bottom
+	pass
 
 
 func process_dragging(delta):
@@ -68,5 +54,6 @@ func _input(event):
 					is_selected = false;
 		else:
 			is_dragging = false;
+      release.emit(self)
 			if Time.get_ticks_msec() - click_time <= SELECTION_TIME:
 				is_selected = true;

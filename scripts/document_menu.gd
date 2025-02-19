@@ -19,9 +19,10 @@ func _ready():
 	var viewport_width = get_viewport().size.x
 	width = $Sprite2D.texture.get_width()
 	height = $Sprite2D.texture.get_height()
-	var peek = 0.02 * viewport_width
+	var peek = 0.1 * viewport_width
+	var full = 0.3 * viewport_width
 	retracted_pos = Vector2(-viewport_width / 2 - width / 2 + peek, 0)
-	expanded_pos = retracted_pos + Vector2(width - peek, 0)
+	expanded_pos = Vector2(-viewport_width / 2 - width / 2 + full, 0)
 	position = retracted_pos
 	z_index = DOCUMENT_MENU_Z
 
@@ -58,7 +59,6 @@ func _on_documents_dropped(doc):
 
 func _on_expand_button_pressed():
 	expand_button_pressed.emit()
-	$ExpandButton.flip_h = not $ExpandButton.flip_h
 	expanded = not expanded
 	update_documents()
 

@@ -48,7 +48,7 @@ z_index = -100
 texture = ExtResource("4_gd8ix")
 
 [node name="DocumentMenu" parent="." instance=ExtResource("6_lgqyx")]
-position = Vector2(-650, 0)
+position = Vector2(-561, 16)
 
 [node name="Label" type="Label" parent="."]
 offset_left = -192.0

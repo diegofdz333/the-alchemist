@@ -1,11 +1,13 @@
 extends Node
 
 signal dropped(doc)
+signal selected_document_changed(new_doc)
 
 const DOCUMENT_Z = 0; # Lowest document z value
 const DOCUMENT_MENU_Z = 50; # Document menu z value
 
 var document_ordering: Array = [];
+var selected_document = null;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,6 +21,25 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# Process document selection
+	var selected_doc_exists = false;
+	for i in range(0, document_ordering.size()):
+		var doc = document_ordering[i];
+		if doc.is_selected:
+			# Document was clicked
+			selected_doc_exists = true;
+			if selected_document != doc:
+				selected_document = doc;
+				selected_document_changed.emit(doc)
+				document_ordering.pop_at(i);
+				document_ordering.push_front(doc);
+				refresh_z_indeces();
+			break
+	if !selected_doc_exists and selected_document != null:
+		selected_document = null;
+		selected_document_changed.emit(null)
+	
+	# Process document dragging
 	for i in range(0, document_ordering.size()):
 		var doc = document_ordering[i];
 		if doc.process_dragging(delta):

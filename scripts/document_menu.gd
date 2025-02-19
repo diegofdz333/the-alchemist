@@ -2,7 +2,9 @@ extends Area2D
 
 signal expand_button_pressed()
 
-const menu_z = 50
+const DOCUMENT_MENU_Z: int = 50
+const ROWS: int = 5
+const COLS: int = 2
 
 var retracted_pos: Vector2 = Vector2.ZERO
 var expanded_pos: Vector2 = Vector2.ZERO
@@ -10,7 +12,7 @@ var width: int = 0
 var height: int = 0
 var expanded: bool = false
 
-var documents: Array = []
+var documents: Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +23,7 @@ func _ready():
 	retracted_pos = Vector2(-viewport_width / 2 - width / 2 + peek, 0)
 	expanded_pos = retracted_pos + Vector2(width - peek, 0)
 	position = retracted_pos
-	z_index = menu_z
+	z_index = DOCUMENT_MENU_Z
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -29,7 +31,38 @@ func _process(delta):
 	pass
 
 
+func in_menu(pos):
+	var right = expanded_pos.x + width / 2
+	var top = expanded_pos.y + height / 2
+	var bottom = expanded_pos.y - height / 2
+	return pos.x < right and pos.y < top and pos.y > bottom
+
+
+func update_documents():
+	for doc in documents:
+		if expanded:
+			doc.show()
+			doc.set_process_input(true)
+		else:
+			doc.hide()
+			doc.set_process_input(false)
+
+
+func _on_documents_moved(doc):
+	doc.in_menu = in_menu(doc.position)
+	if doc in documents and not doc.in_menu:
+		documents.erase(doc)
+	elif doc not in documents and doc.in_menu:
+		documents[doc] = null
+
+
 func _on_expand_button_pressed():
 	expand_button_pressed.emit()
 	$ExpandButton.flip_h = not $ExpandButton.flip_h
 	expanded = not expanded
+	update_documents()
+
+
+func _on_organize_button_pressed():
+	pass # Replace with function body.
+		

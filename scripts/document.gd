@@ -12,23 +12,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if in_menu and not $"../../DocumentMenu".expanded:
-		hide()
-		set_process_input(false)
-		is_dragging = false
-	else:
-		show()
-		set_process_input(true)
-	
-	if is_dragging and $"../../DocumentMenu".expanded:
-		verify_in_menu()
-
-
-func verify_in_menu():
-	var right = $"../../DocumentMenu".expanded_pos.x + $"../../DocumentMenu".width / 2
-	var top = $"../../DocumentMenu".expanded_pos.y + $"../../DocumentMenu".height / 2
-	var bottom = $"../../DocumentMenu".expanded_pos.y - $"../../DocumentMenu".height / 2
-	in_menu = position.x < right and position.y < top and position.y > bottom
+	pass
 
 
 func process_dragging(delta):

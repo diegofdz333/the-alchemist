@@ -36,4 +36,5 @@ texture = ExtResource("4_gd8ix")
 [node name="DocumentMenu" parent="." instance=ExtResource("6_lgqyx")]
 position = Vector2(-650, 0)
 
+[connection signal="moved" from="Documents" to="DocumentMenu" method="_on_documents_moved"]
 [connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]

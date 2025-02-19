@@ -12,7 +12,6 @@ func _process(delta):
 
 func _on_document_menu_expand_button_pressed():
 	if $DocumentMenu.expanded:
-		print("debug")
 		$DocumentMenu.position = $DocumentMenu.retracted_pos;
 	else:
 		$DocumentMenu.position = $DocumentMenu.expanded_pos;

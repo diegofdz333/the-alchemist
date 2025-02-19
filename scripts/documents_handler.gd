@@ -23,7 +23,8 @@ func _process(delta):
 			document_ordering.push_front(doc);
 			refresh_z_indeces();
 			break
-	pass
+	refresh_z_indeces();
+
 
 # Set z index of all documents based on document ordering
 func refresh_z_indeces():
@@ -32,3 +33,5 @@ func refresh_z_indeces():
 		# Higher z index is closer to screen
 		var doc: Sprite2D = document_ordering[i];
 		doc.z_index = DOCUMENT_Z + max_z - i - 1;
+		if doc.in_menu or (i == 0 and doc.is_dragging):
+			doc.z_index += $"../DocumentMenu".menu_z

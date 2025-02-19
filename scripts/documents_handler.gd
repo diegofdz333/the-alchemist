@@ -1,6 +1,6 @@
 extends Node
 
-signal moved(doc)
+signal dropped(doc)
 
 const DOCUMENT_Z = 0; # Lowest document z value
 const DOCUMENT_MENU_Z = 50; # Document menu z value
@@ -12,6 +12,7 @@ func _ready():
 	var documents = get_children();
 	for i in range(0, documents.size()):
 		var doc = documents[i];
+		doc.release.connect(_on_document_release)
 		document_ordering.push_back(doc);
 	refresh_z_indeces();
 
@@ -22,7 +23,6 @@ func _process(delta):
 		var doc = document_ordering[i];
 		if doc.process_dragging(delta):
 			# Document is being dragged
-			moved.emit(doc)
 			document_ordering.pop_at(i);
 			document_ordering.push_front(doc);
 			refresh_z_indeces();
@@ -39,3 +39,7 @@ func refresh_z_indeces():
 		doc.z_index = DOCUMENT_Z + max_z - i - 1;
 		if doc.in_menu or (i == 0 and doc.is_dragging):
 			doc.z_index += DOCUMENT_MENU_Z
+
+
+func _on_document_release(doc):
+	dropped.emit(doc)

@@ -48,7 +48,7 @@ func update_documents():
 			doc.set_process_input(false)
 
 
-func _on_documents_moved(doc):
+func _on_documents_dropped(doc):
 	doc.in_menu = in_menu(doc.position)
 	if doc in documents and not doc.in_menu:
 		documents.erase(doc)

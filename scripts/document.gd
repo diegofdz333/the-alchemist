@@ -1,5 +1,7 @@
 extends Sprite2D
 
+signal release(doc)
+
 var is_dragging = false;
 var mouse_offset;
 var delay = 1;
@@ -34,6 +36,9 @@ func _input(event):
 			if get_rect().has_point(to_local(get_global_mouse_position())):
 				is_dragging = true;
 				mouse_offset = get_global_mouse_position() - global_position;
-		else:
+		else: # mouse was just released
 			is_dragging = false;
+			release.emit(self)
+			
+	
 	

@@ -54,6 +54,6 @@ func _input(event):
 					is_selected = false;
 		else:
 			is_dragging = false;
-      release.emit(self)
+			release.emit(self)
 			if Time.get_ticks_msec() - click_time <= SELECTION_TIME:
 				is_selected = true;

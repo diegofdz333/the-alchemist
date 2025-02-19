@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ddpk08d1nysw7" path="res://assets/documents/doc1.png" id="3_y3cmu"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
-[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
+[ext_resource type="PackedScene" uid="uid://chajdh0arltg1" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na3qj"]
@@ -76,6 +76,7 @@ offset_right = 367.0
 offset_bottom = 29.0
 text = ">"
 
+[connection signal="dropped" from="Documents" to="DocumentMenu" method="_on_documents_dropped"]
 [connection signal="selected_document_changed" from="Documents" to="Label" method="_on_documents_selected_document_changed"]
 [connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]
 [connection signal="button_down" from="Label/LeftText" to="Label" method="_on_left_text_button_down"]

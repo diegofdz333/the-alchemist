@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5fis15vkrthn"]
+[gd_scene load_steps=7 format=3 uid="uid://chajdh0arltg1"]
 
 [ext_resource type="Script" path="res://scripts/document_menu.gd" id="1_tce4k"]
 [ext_resource type="Texture2D" uid="uid://c4jcoomwiqly4" path="res://assets/menus/side_menu.png" id="2_mees7"]
@@ -28,9 +28,4 @@ texture_normal = ExtResource("3_ik7me")
 texture_pressed = ExtResource("4_kpomf")
 texture_hover = ExtResource("5_2ilg4")
 
-[node name="OrganizeButton" type="TextureButton" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
-
 [connection signal="pressed" from="ExpandButton" to="." method="_on_expand_button_pressed"]
-[connection signal="pressed" from="OrganizeButton" to="." method="_on_organize_button_pressed"]

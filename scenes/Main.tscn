@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ddpk08d1nysw7" path="res://assets/documents/doc1.png" id="3_y3cmu"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
-[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
+[ext_resource type="PackedScene" uid="uid://chajdh0arltg1" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na3qj"]
@@ -21,6 +21,27 @@ script = ExtResource("1_478tm")
 
 [node name="Documents" type="Node" parent="."]
 script = ExtResource("1_bl5sq")
+
+[node name="Dummy-letter10" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(-55, -103)
+
+[node name="Dummy-letter9" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(-78, 135)
+
+[node name="Dummy-letter8" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(430, 137)
+
+[node name="Dummy-letter7" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(335, -140)
+
+[node name="Dummy-letter6" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(41, -19)
+
+[node name="Dummy-letter5" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(31, 141)
+
+[node name="Dummy-letter4" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(83, -176)
 
 [node name="Dummy-letter3" parent="Documents" instance=ExtResource("2_2uoe8")]
 position = Vector2(-241, -84)

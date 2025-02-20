@@ -4,7 +4,6 @@ signal dropped(doc)
 signal selected_document_changed(new_doc)
 
 const DOCUMENT_Z = 0; # Lowest document z value
-const DOCUMENT_MENU_Z = 50; # Document menu z value
 
 var document_ordering: Array = [];
 var selected_document = null;
@@ -59,7 +58,7 @@ func refresh_z_indeces():
 		var doc: Sprite2D = document_ordering[i];
 		doc.z_index = DOCUMENT_Z + max_z - i - 1;
 		if doc.in_menu or (i == 0 and doc.is_dragging):
-			doc.z_index += DOCUMENT_MENU_Z
+			doc.z_index += ($"../DocumentMenu".DOCUMENT_MENU_Z + 1)
 
 
 func _on_document_release(doc):

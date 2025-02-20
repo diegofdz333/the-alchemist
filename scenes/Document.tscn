@@ -7,3 +7,4 @@
 scale = Vector2(0.450588, 0.466667)
 texture = ExtResource("1_sp36h")
 script = ExtResource("2_xaevp")
+small_texture = ExtResource("1_sp36h")

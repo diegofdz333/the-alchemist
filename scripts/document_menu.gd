@@ -55,7 +55,6 @@ func _on_documents_dropped(doc):
 		if doc in documents and not doc.in_menu:
 			documents.erase(doc)
 		elif doc not in documents and doc.in_menu:
-			print("adding doc")
 			documents[doc] = null
 
 

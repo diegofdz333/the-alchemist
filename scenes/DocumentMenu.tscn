@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://chajdh0arltg1"]
+[gd_scene load_steps=7 format=3 uid="uid://b5fis15vkrthn"]
 
 [ext_resource type="Script" path="res://scripts/document_menu.gd" id="1_tce4k"]
 [ext_resource type="Texture2D" uid="uid://c4jcoomwiqly4" path="res://assets/menus/side_menu.png" id="2_mees7"]
@@ -16,6 +16,7 @@ script = ExtResource("1_tce4k")
 texture = ExtResource("2_mees7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_jwddy")
 
 [node name="ExpandButton" type="TextureButton" parent="."]

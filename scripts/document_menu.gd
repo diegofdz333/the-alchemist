@@ -19,7 +19,7 @@ func _ready():
 	var viewport_width = get_viewport().size.x
 	width = $Sprite2D.texture.get_width()
 	height = $Sprite2D.texture.get_height()
-	var peek = 0.1 * viewport_width
+	var peek = 0.07 * viewport_width
 	var full = 0.3 * viewport_width
 	retracted_pos = Vector2(-viewport_width / 2 - width / 2 + peek, 0)
 	expanded_pos = Vector2(-viewport_width / 2 - width / 2 + full, 0)
@@ -50,11 +50,13 @@ func update_documents():
 
 
 func _on_documents_dropped(doc):
-	doc.in_menu = in_menu(doc.position)
-	if doc in documents and not doc.in_menu:
-		documents.erase(doc)
-	elif doc not in documents and doc.in_menu:
-		documents[doc] = null
+	if expanded:
+		doc.in_menu = in_menu(doc.position)
+		if doc in documents and not doc.in_menu:
+			documents.erase(doc)
+		elif doc not in documents and doc.in_menu:
+			print("adding doc")
+			documents[doc] = null
 
 
 func _on_expand_button_pressed():

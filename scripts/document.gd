@@ -1,6 +1,7 @@
 extends Sprite2D
 
 @export_multiline var text: String;
+@export var isEnglish: bool = true;
 ## texture for the doc when it is inside the menu 
 ## (can be any size, code will autoscale it to fit a grid cell)
 @export var small_texture: Texture;

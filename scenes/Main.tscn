@@ -1,17 +1,19 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6c12xvctpfc2"]
+[gd_scene load_steps=13 format=3 uid="uid://c6c12xvctpfc2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
 [ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://scenes/Document.tscn" id="2_2uoe8"]
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
-[ext_resource type="Texture2D" uid="uid://ddpk08d1nysw7" path="res://assets/documents/doc1.png" id="3_y3cmu"]
+[ext_resource type="Texture2D" uid="uid://ckp7n13l86t17" path="res://assets/documents/unburntLetter.png" id="4_d8ovf"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
+[ext_resource type="Texture2D" uid="uid://cjms1wtsnkkq0" path="res://assets/documents/burntLetter.png" id="5_4eq1o"]
 [ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 [ext_resource type="Texture2D" uid="uid://cdajpqcljhsrr" path="res://assets/textBar.png" id="8_fxjid"]
+[ext_resource type="LabelSettings" uid="uid://dvbui4870kuc" path="res://resources/secret_label_settings.tres" id="10_3cly0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na3qj"]
-font_size = 19
+font_size = 22
 outline_size = 6
 outline_color = Color(0, 0, 0, 1)
 
@@ -23,24 +25,6 @@ script = ExtResource("1_478tm")
 [node name="Documents" type="Node" parent="."]
 script = ExtResource("1_bl5sq")
 
-[node name="Dummy-letter10" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(-55, -103)
-
-[node name="Dummy-letter9" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(-78, 135)
-
-[node name="Dummy-letter8" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(430, 137)
-
-[node name="Dummy-letter7" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(335, -140)
-
-[node name="Dummy-letter6" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(41, -19)
-
-[node name="Dummy-letter5" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(31, 141)
-
 [node name="Dummy-letter4" parent="Documents" instance=ExtResource("2_2uoe8")]
 position = Vector2(83, -176)
 
@@ -51,10 +35,22 @@ position = Vector2(-241, -84)
 position = Vector2(-419, -220)
 offset = Vector2(275.196, 694.285)
 
-[node name="Dummy-letter" parent="Documents" instance=ExtResource("2_2uoe8")]
+[node name="Unburnt Letter" parent="Documents" instance=ExtResource("2_2uoe8")]
+position = Vector2(31, 141)
+scale = Vector2(1, 1)
+texture = ExtResource("4_d8ovf")
+text = "V
+DFA
+GIHA
+CJA
+BdKA
+E"
+isEnglish = false
+
+[node name="Burnt Letter" parent="Documents" instance=ExtResource("2_2uoe8")]
 position = Vector2(226, 60)
 scale = Vector2(1, 1)
-texture = ExtResource("3_y3cmu")
+texture = ExtResource("5_4eq1o")
 text = "Vilo,
 I am making progress
 The potion is almost
@@ -78,7 +74,7 @@ position = Vector2(-561, 16)
 position = Vector2(0, -288)
 texture = ExtResource("8_fxjid")
 
-[node name="Label" type="Label" parent="TestBar"]
+[node name="EnglishLabel" type="Label" parent="TestBar"]
 z_index = 5
 anchors_preset = 8
 anchor_left = 0.5
@@ -91,31 +87,51 @@ offset_right = -19.5
 offset_bottom = 2.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Test"
 label_settings = SubResource("LabelSettings_na3qj")
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_axhao")
+isEnglishLabel = true
 
-[node name="LeftText" type="Button" parent="TestBar/Label"]
-layout_mode = 0
-offset_top = 10.0
-offset_right = 18.0
-offset_bottom = 41.0
+[node name="SecretLabel" type="Label" parent="TestBar"]
+z_index = 5
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -401.5
+offset_top = -51.5
+offset_right = -19.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = ExtResource("10_3cly0")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_axhao")
+
+[node name="LeftText" type="Button" parent="TestBar"]
+offset_left = -191.0
+offset_top = -17.0
+offset_right = -173.0
+offset_bottom = 14.0
 text = "<"
 flat = true
 
-[node name="RightText" type="Button" parent="TestBar/Label"]
-layout_mode = 0
-offset_left = 370.0
-offset_top = 10.0
-offset_right = 388.0
-offset_bottom = 41.0
+[node name="RightText" type="Button" parent="TestBar"]
+offset_left = 179.0
+offset_top = -17.0
+offset_right = 197.0
+offset_bottom = 14.0
 text = ">"
 flat = true
 
 [connection signal="dropped" from="Documents" to="DocumentMenu" method="_on_documents_dropped"]
-[connection signal="selected_document_changed" from="Documents" to="TestBar/Label" method="_on_documents_selected_document_changed"]
+[connection signal="selected_document_changed" from="Documents" to="TestBar/EnglishLabel" method="_on_documents_selected_document_changed"]
+[connection signal="selected_document_changed" from="Documents" to="TestBar/SecretLabel" method="_on_documents_selected_document_changed"]
 [connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]
-[connection signal="button_down" from="TestBar/Label/LeftText" to="TestBar/Label" method="_on_left_text_button_down"]
-[connection signal="button_down" from="TestBar/Label/RightText" to="TestBar/Label" method="_on_right_text_button_down"]
+[connection signal="button_down" from="TestBar/LeftText" to="TestBar/EnglishLabel" method="_on_left_text_button_down"]
+[connection signal="button_down" from="TestBar/LeftText" to="TestBar/SecretLabel" method="_on_left_text_button_down"]
+[connection signal="button_down" from="TestBar/RightText" to="TestBar/EnglishLabel" method="_on_right_text_button_down"]
+[connection signal="button_down" from="TestBar/RightText" to="TestBar/SecretLabel" method="_on_right_text_button_down"]

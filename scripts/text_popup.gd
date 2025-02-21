@@ -1,5 +1,6 @@
 extends Label
 
+@export var isEnglishLabel: bool;
 var max_line = 0;
 var current_line = 0;
 var doc_text = null;
@@ -13,9 +14,11 @@ func _ready():
 func _process(delta):
 	pass
 
+func languagesAgree(isEnglishLanguage):
+	return (isEnglishLabel && isEnglishLanguage) || (!isEnglishLabel && !isEnglishLanguage);
 
 func _on_documents_selected_document_changed(new_doc):
-	if new_doc != null:
+	if new_doc != null && languagesAgree(new_doc.isEnglish):
 		doc_text = new_doc.text;
 		current_line = 0;
 		max_line = doc_text.split("\n").size() - 1;

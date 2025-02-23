@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://de0bxnxrfky8a"]
+[gd_scene load_steps=21 format=3 uid="uid://de0bxnxrfky8a"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
 [ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://Document.tscn" id="2_2uoe8"]
+[ext_resource type="AudioStream" uid="uid://tifoisvalf6e" path="res://assets/music/Botanical Brewery.mp3" id="2_qdvx0"]
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ckp7n13l86t17" path="res://assets/documents/unburntLetter.png" id="4_d8ovf"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
@@ -26,6 +27,11 @@ outline_color = Color(0, 0, 0, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_478tm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qdvx0")
+autoplay = true
+parameters/looping = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

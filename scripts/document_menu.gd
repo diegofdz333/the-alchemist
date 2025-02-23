@@ -70,8 +70,7 @@ func _on_documents_dropped(doc):
 		doc.in_menu = pos_in_menu(doc.position) and doc.z_index > DOCUMENT_MENU_Z
 		if doc in documents and not doc.in_menu:
 			# doc moved out of menu
-			doc.texture = doc.big_texture
-			doc.scale = doc.big_texture_scale
+			doc.reload_texture();
 			occupied[documents[doc]] = false
 			documents.erase(doc)
 		elif doc not in documents and doc.in_menu:
@@ -79,6 +78,7 @@ func _on_documents_dropped(doc):
 			doc.texture = doc.small_texture
 			rescale(doc)
 			reposition(doc)
+			doc.is_selected = false;
 		elif doc in documents and doc.in_menu:
 			# doc already in menu but dragged somewhere else within
 			occupied[documents[doc]] = false

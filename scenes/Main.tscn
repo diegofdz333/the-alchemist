@@ -1,15 +1,19 @@
-[gd_scene load_steps=13 format=3 uid="uid://c6c12xvctpfc2"]
+[gd_scene load_steps=17 format=3 uid="uid://de0bxnxrfky8a"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
-[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://scenes/Document.tscn" id="2_2uoe8"]
+[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://Document.tscn" id="2_2uoe8"]
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ckp7n13l86t17" path="res://assets/documents/unburntLetter.png" id="4_d8ovf"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
 [ext_resource type="Texture2D" uid="uid://cjms1wtsnkkq0" path="res://assets/documents/burntLetter.png" id="5_4eq1o"]
-[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
+[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://DocumentMenu.tscn" id="6_lgqyx"]
+[ext_resource type="PackedScene" path="res://scenes/Document.tscn" id="6_sct4c"]
+[ext_resource type="Texture2D" uid="uid://bncrq8qe0wpcu" path="res://assets/documents/book-page-0.png" id="7_1wq1i"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 [ext_resource type="Texture2D" uid="uid://cdajpqcljhsrr" path="res://assets/textBar.png" id="8_fxjid"]
+[ext_resource type="Script" path="res://scripts/book.gd" id="8_uy8em"]
+[ext_resource type="Script" path="res://scripts/book_button.gd" id="9_uv647"]
 [ext_resource type="LabelSettings" uid="uid://dvbui4870kuc" path="res://resources/secret_label_settings.tres" id="10_3cly0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na3qj"]
@@ -24,16 +28,6 @@ script = ExtResource("1_478tm")
 
 [node name="Documents" type="Node" parent="."]
 script = ExtResource("1_bl5sq")
-
-[node name="Dummy-letter4" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(83, -176)
-
-[node name="Dummy-letter3" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(-241, -84)
-
-[node name="Dummy-letter2" parent="Documents" instance=ExtResource("2_2uoe8")]
-position = Vector2(-419, -220)
-offset = Vector2(275.196, 694.285)
 
 [node name="Unburnt Letter" parent="Documents" instance=ExtResource("2_2uoe8")]
 position = Vector2(31, 141)
@@ -57,6 +51,56 @@ The potion is almost
 complete.
 Please send Starbloom,
 - Elryn"
+
+[node name="Book" parent="Documents" instance=ExtResource("6_sct4c")]
+position = Vector2(-139, -86)
+scale = Vector2(1, 1)
+texture = ExtResource("7_1wq1i")
+script = ExtResource("8_uy8em")
+text = "@Page
+E
+@Page
+O
+f, H
+d, H
+e, H
+g, H
+h, H
+c, LH,  H
+H, HA
+@Page
+e
+c
+d
+"
+isEnglish = false
+
+[node name="LeftButton" type="Button" parent="Documents/Book"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -228.5
+offset_right = -69.0
+offset_bottom = -28.5
+grow_vertical = 2
+text = "<"
+script = ExtResource("9_uv647")
+
+[node name="RightButton" type="Button" parent="Documents/Book"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -228.5
+offset_right = -94.0
+offset_bottom = -28.5
+grow_horizontal = 0
+grow_vertical = 2
+text = ">"
+script = ExtResource("9_uv647")
 
 [node name="Table" type="Sprite2D" parent="."]
 z_index = -5
@@ -130,6 +174,9 @@ flat = true
 [connection signal="dropped" from="Documents" to="DocumentMenu" method="_on_documents_dropped"]
 [connection signal="selected_document_changed" from="Documents" to="TestBar/EnglishLabel" method="_on_documents_selected_document_changed"]
 [connection signal="selected_document_changed" from="Documents" to="TestBar/SecretLabel" method="_on_documents_selected_document_changed"]
+[connection signal="page_changed" from="Documents/Book" to="Documents" method="_on_book_page_changed"]
+[connection signal="button_down" from="Documents/Book/LeftButton" to="Documents/Book" method="_on_left_button_button_down"]
+[connection signal="button_down" from="Documents/Book/RightButton" to="Documents/Book" method="_on_right_button_button_down"]
 [connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/EnglishLabel" method="_on_left_text_button_down"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/SecretLabel" method="_on_left_text_button_down"]

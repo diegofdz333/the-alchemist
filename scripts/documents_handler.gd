@@ -63,3 +63,8 @@ func refresh_z_indeces():
 
 func _on_document_release(doc):
 	dropped.emit(doc)
+
+
+func _on_book_page_changed(doc):
+	if doc.is_selected:
+		selected_document_changed.emit(doc);

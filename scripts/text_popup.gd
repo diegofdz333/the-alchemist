@@ -19,7 +19,7 @@ func languagesAgree(isEnglishLanguage):
 
 func _on_documents_selected_document_changed(new_doc):
 	if new_doc != null && languagesAgree(new_doc.isEnglish):
-		doc_text = new_doc.text;
+		doc_text = new_doc.get_text();
 		current_line = 0;
 		max_line = doc_text.split("\n").size() - 1;
 	else:

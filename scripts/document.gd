@@ -22,7 +22,6 @@ var click_time = 0;
 var mouse_offset;
 var time
 
-
 var in_menu: bool = false;
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +34,13 @@ func _ready():
 func _process(delta):
 	pass
 
+func reload_texture():
+	texture = big_texture;
+	scale = big_texture_scale;
+
+# Overriden by Book
+func get_text():
+	return text;
 
 func process_dragging(delta):
 	if is_dragging:
@@ -63,6 +69,7 @@ func _input(event):
 			if is_dragging:
 				release.emit(self)
 			is_dragging = false;
-			if get_rect().has_point(to_local(get_global_mouse_position())):
-				if Time.get_ticks_msec() - click_time <= SELECTION_TIME:
-					is_selected = true;
+			if not in_menu:
+				if get_rect().has_point(to_local(get_global_mouse_position())):
+					if Time.get_ticks_msec() - click_time <= SELECTION_TIME:
+						is_selected = true;

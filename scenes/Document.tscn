@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2l8r3021bgo0"]
+[gd_scene load_steps=3 format=3 uid="uid://dml2o4mtpde67"]
 
 [ext_resource type="Texture2D" uid="uid://3c8uot3jlnkf" path="res://assets/documents/dummy-letter.png" id="1_sp36h"]
 [ext_resource type="Script" path="res://scripts/document.gd" id="2_xaevp"]

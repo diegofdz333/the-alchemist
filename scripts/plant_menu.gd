@@ -23,8 +23,13 @@ var plants: Dictionary = {}
 var occupied: Dictionary = {}
 var cauldron
 
+var viewportWidth;
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	viewportWidth = 1152;
+	print(get_viewport().size.x)
 	position_menu()
 	cauldron = $"../Cauldron"
 	position_cauldron(cauldron)
@@ -47,7 +52,7 @@ func _process(delta):
 
 
 func position_menu():
-	var viewport_width = get_viewport().size.x
+	var viewport_width = viewportWidth;
 	width = $Sprite2D.texture.get_width()
 	height = $Sprite2D.texture.get_height()
 	retracted_pos = Vector2(viewport_width / 2 + width / 2 - peek * viewport_width, 0)
@@ -81,7 +86,7 @@ func update_menu_items():
 
 
 func rescale(plant):
-	var col_width = (-expanded_pos.x + width / 2 + get_viewport().size.x / 2) / cols
+	var col_width = (-expanded_pos.x + width / 2 + viewportWidth / 2) / cols
 	var row_height = height * plant_proportion / rows
 	var rect = plant.get_rect()
 	var sprite_width = rect.size.x
@@ -93,7 +98,7 @@ func rescale(plant):
 
 # Snap a plant to a grid cell in the menu
 func reposition(plant):
-	var col_width = (-expanded_pos.x + width / 2 + get_viewport().size.x / 2) / cols
+	var col_width = (-expanded_pos.x + width / 2 + viewportWidth / 2) / cols
 	var row_height = height * plant_proportion / rows
 	var top_left = Vector2(expanded_pos.x - width / 2, -height / 2)
 
@@ -109,7 +114,7 @@ func reposition(plant):
 
 
 func position_cauldron(cauldron):
-	var col_width = -expanded_pos.x + width / 2 + get_viewport().size.x / 2
+	var col_width = -expanded_pos.x + width / 2 + viewportWidth / 2
 	var row_height = height * (1 - plant_proportion)
 	var rect = cauldron.get_rect()
 	var sprite_width = rect.size.x

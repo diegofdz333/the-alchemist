@@ -22,6 +22,7 @@ var expanded: bool = false
 var documents: Dictionary = {}
 var occupied: Dictionary = {}
 
+var viewportWidth = 1152;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,11 +45,10 @@ func _process(delta):
 
 
 func position_menu():
-	var viewport_width = get_viewport().size.x
 	width = $Sprite2D.texture.get_width()
 	height = $Sprite2D.texture.get_height()
-	retracted_pos = Vector2(-viewport_width / 2 - width / 2 + peek * viewport_width, 0)
-	expanded_pos = Vector2(-viewport_width / 2 - width / 2 + full * viewport_width, 0)
+	retracted_pos = Vector2(-viewportWidth / 2 - width / 2 + peek * viewportWidth, 0)
+	expanded_pos = Vector2(-viewportWidth / 2 - width / 2 + full * viewportWidth, 0)
 	position = retracted_pos
 	z_index = DOCUMENT_MENU_Z
 
@@ -92,7 +92,7 @@ func _on_documents_dropped(doc):
 
 # Rescale doc to fit a grid cell in the menu
 func rescale(doc):
-	var col_width = (expanded_pos.x + width / 2 + get_viewport().size.x / 2) / cols
+	var col_width = (expanded_pos.x + width / 2 + viewportWidth / 2) / cols
 	var row_height = height / rows
 	var rect = doc.get_rect()
 	var sprite_width = rect.size.x
@@ -104,9 +104,9 @@ func rescale(doc):
 
 # Snap a doc to a grid cell in the menu
 func reposition(doc):
-	var col_width = (expanded_pos.x + width / 2 + get_viewport().size.x / 2) / cols
+	var col_width = (expanded_pos.x + width / 2 + viewportWidth / 2) / cols
 	var row_height = height / rows
-	var top_left = Vector2(-get_viewport().size.x / 2, -height / 2)
+	var top_left = Vector2(-viewportWidth / 2, -height / 2)	
 	
 	for r in range(rows):
 		for c in range(cols):

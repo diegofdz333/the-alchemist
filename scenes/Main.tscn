@@ -22,7 +22,7 @@
 [ext_resource type="LabelSettings" uid="uid://dvbui4870kuc" path="res://resources/secret_label_settings.tres" id="10_3cly0"]
 [ext_resource type="Texture2D" uid="uid://ctbpjbhaiqo8r" path="res://assets/plants/walkingtoad.png" id="10_g87fe"]
 [ext_resource type="PackedScene" uid="uid://cxfcyyca6olrd" path="res://scenes/PlantMenu.tscn" id="12_cwajq"]
-[ext_resource type="PackedScene" path="res://scenes/Plant.tscn" id="13_m0xuo"]
+[ext_resource type="PackedScene" uid="uid://djxpfrsbnn7x7" path="res://scenes/Plant.tscn" id="13_m0xuo"]
 [ext_resource type="Script" path="res://scripts/plant_handler.gd" id="16_mql5o"]
 [ext_resource type="Texture2D" uid="uid://c0kt4hkgoxpup" path="res://assets/plants/submit_button.png" id="25_3600f"]
 [ext_resource type="Texture2D" uid="uid://bnihsyae7b7n7" path="res://assets/plants/submit_button_pressed.png" id="26_x7a1b"]
@@ -45,7 +45,6 @@ script = ExtResource("16_mql5o")
 
 [node name="Plant" parent="Plants" instance=ExtResource("13_m0xuo")]
 position = Vector2(224, -82)
-texture = ExtResource("5_qwc3g")
 plant_name = "Starbloom"
 small_texture = ExtResource("5_qwc3g")
 

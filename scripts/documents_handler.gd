@@ -7,6 +7,7 @@ const DOCUMENT_Z = 0; # Lowest document z value
 
 var document_ordering: Array = [];
 var selected_document = null;
+var plants_dragging: bool = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,6 +40,9 @@ func _process(delta):
 		selected_document_changed.emit(null)
 	
 	# Process document dragging
+	if plants_dragging:
+		return
+		
 	for i in range(0, document_ordering.size()):
 		var doc = document_ordering[i];
 		if doc.process_dragging(delta):
@@ -68,3 +72,15 @@ func _on_document_release(doc):
 func _on_book_page_changed(doc):
 	if doc.is_selected:
 		selected_document_changed.emit(doc);
+
+
+func _on_plants_dragging():
+	plants_dragging = true
+
+
+func _on_cauldron_dropped(cauldron):
+	plants_dragging = false
+
+
+func _on_plant_dropped(plant):
+	plants_dragging = false

@@ -27,5 +27,6 @@ offset_bottom = -251.0
 texture_normal = ExtResource("3_ik7me")
 texture_pressed = ExtResource("4_kpomf")
 texture_hover = ExtResource("5_2ilg4")
+metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="ExpandButton" to="." method="_on_expand_button_pressed"]

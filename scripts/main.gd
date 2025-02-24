@@ -1,5 +1,7 @@
 extends Node2D
 
+signal win();
+
 const winning_plants: Dictionary = {
 	"Starbloom": null,
 	"Ashthorn": null,
@@ -24,6 +26,7 @@ func _on_submit_button_pressed():
 	print(names)
 	if names == winning_plants:
 		print("win!")
+		win.emit();
 	else:
 		print("try again!")
 	pass # Replace with function body.

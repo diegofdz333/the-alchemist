@@ -1,4 +1,4 @@
-extends Button
+extends Control
 
 func _ready():
 	change_selected(false)

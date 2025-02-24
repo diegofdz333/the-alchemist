@@ -1,9 +1,9 @@
 extends "res://scripts/document.gd"
 
+@export var pages: Array[String] = []
+
 signal page_changed(doc)
 
-const MIN_PAGE = 0;
-const MAX_PAGE = 3;
 var page = 0
 var prev_is_selected = false;
 
@@ -11,36 +11,41 @@ var prev_is_selected = false;
 func _ready():
 	page = 0
 	super()
-	
+
+
 func _process(delta):
 	super(delta)
 	if is_selected != prev_is_selected:
 		prev_is_selected = is_selected;
-		var buttons = get_children();
-		for button in buttons:
-			button.change_selected(is_selected);
+		var children = get_children();
+		for child in children:
+			if child is Button or page > 0 or not is_selected:
+				child.change_selected(is_selected);
+
 
 func get_text():
 	var full_text = text.split("@Page")[page]
 	return full_text.lstrip(" \n").rstrip(" \n");
 
+
 func reload_texture():
 	change_page(page);
 	scale = big_texture_scale;
-	
+
+
 
 func change_page(page_):
-	if page_ <= MAX_PAGE and page_ >= MIN_PAGE:
+	if page_ < pages.size() and page_ >= 0:
 		page = page_;
 		page_changed.emit(self);
-		if page == 0:
-			texture = load("res://assets/documents/book-page-0.png");
-		elif page == 1:
-			texture = load("res://assets/documents/book-page-1.png");
-		elif page == 2:
-			texture = load("res://assets/documents/book-page-2.png");
-		elif page == 3:
-			texture = load("res://assets/documents/book-page-4.png");
+		texture = load(pages[page])
+		var children = get_children();
+		for child in children:
+			if page > 0:
+				child.change_selected(is_selected);
+			else:
+				if child is LineEdit:
+					child.change_selected(false);
 
 
 func _on_right_button_button_down():

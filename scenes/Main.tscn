@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://de0bxnxrfky8a"]
+[gd_scene load_steps=23 format=3 uid="uid://de0bxnxrfky8a"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cjms1wtsnkkq0" path="res://assets/documents/burntLetter.png" id="5_4eq1o"]
 [ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://DocumentMenu.tscn" id="6_lgqyx"]
 [ext_resource type="PackedScene" uid="uid://c2l8r3021bgo0" path="res://scenes/Document.tscn" id="6_sct4c"]
-[ext_resource type="Texture2D" uid="uid://bncrq8qe0wpcu" path="res://assets/documents/book-page-0.png" id="7_1wq1i"]
+[ext_resource type="Texture2D" uid="uid://bncrq8qe0wpcu" path="res://assets/documents/book/book-page-0.png" id="7_1wq1i"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 [ext_resource type="Texture2D" uid="uid://cdajpqcljhsrr" path="res://assets/textBar.png" id="8_fxjid"]
 [ext_resource type="Script" path="res://scripts/book.gd" id="8_uy8em"]
@@ -18,6 +18,8 @@
 [ext_resource type="LabelSettings" uid="uid://dvbui4870kuc" path="res://resources/secret_label_settings.tres" id="10_3cly0"]
 [ext_resource type="Texture2D" uid="uid://b7sijfyusgtg8" path="res://assets/documents/herb-sources.png" id="10_5825u"]
 [ext_resource type="Texture2D" uid="uid://b1xpxyf5vqnbd" path="res://assets/documents/map.png" id="11_553rl"]
+[ext_resource type="Texture2D" uid="uid://buxma5mjdp01q" path="res://assets/documents/translations/translations-0.png" id="11_pdu1p"]
+[ext_resource type="Script" path="res://scripts/translation_book.gd" id="12_5014t"]
 [ext_resource type="Texture2D" uid="uid://1tydn0godjno" path="res://assets/documents/note.png" id="12_t862x"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na3qj"]
@@ -29,6 +31,7 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_478tm")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 0)
 stream = ExtResource("2_qdvx0")
 autoplay = true
 parameters/looping = true
@@ -66,6 +69,7 @@ position = Vector2(-139, -86)
 scale = Vector2(1, 1)
 texture = ExtResource("7_1wq1i")
 script = ExtResource("8_uy8em")
+pages = Array[String](["res://assets/documents/book/book-page-0.png", "res://assets/documents/book/book-page-1.png", "res://assets/documents/book/book-page-2.png", "res://assets/documents/book/book-page-4.png"])
 text = "@Page
 E
 @Page
@@ -110,6 +114,89 @@ offset_bottom = -28.5
 grow_horizontal = 0
 grow_vertical = 2
 text = ">"
+script = ExtResource("9_uv647")
+
+[node name="TranslationsBook" parent="Documents" instance=ExtResource("6_sct4c")]
+z_index = 1
+position = Vector2(316, 95)
+scale = Vector2(1, 1)
+texture = ExtResource("11_pdu1p")
+script = ExtResource("12_5014t")
+pages = Array[String](["res://assets/documents/translations/translations-0.png", "res://assets/documents/translations/translations-1.png", "res://assets/documents/translations/translations-2.png", "res://assets/documents/translations/translations-3.png", "res://assets/documents/translations/translations-4.png"])
+text = "@Page
+@Page
+@Page
+@Page
+@Page"
+small_texture = ExtResource("11_pdu1p")
+
+[node name="LeftButton" type="Button" parent="Documents/TranslationsBook"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -228.5
+offset_right = -69.0
+offset_bottom = -28.5
+grow_vertical = 2
+text = "<"
+script = ExtResource("9_uv647")
+
+[node name="RightButton" type="Button" parent="Documents/TranslationsBook"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -228.5
+offset_right = -94.0
+offset_bottom = -28.5
+grow_horizontal = 0
+grow_vertical = 2
+text = ">"
+script = ExtResource("9_uv647")
+
+[node name="Line0" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -104.665
+offset_right = 59.0
+offset_bottom = -73.665
+script = ExtResource("9_uv647")
+
+[node name="Line1" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -70.165
+offset_right = 59.0
+offset_bottom = -39.165
+script = ExtResource("9_uv647")
+
+[node name="Line2" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -38.565
+offset_right = 59.0
+offset_bottom = -7.565
+script = ExtResource("9_uv647")
+
+[node name="Line3" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -6.605
+offset_right = 59.0
+offset_bottom = 24.395
+script = ExtResource("9_uv647")
+
+[node name="Line4" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = 27.705
+offset_right = 59.0
+offset_bottom = 58.705
+script = ExtResource("9_uv647")
+
+[node name="Line5" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = 65.42
+offset_right = 59.0
+offset_bottom = 96.42
 script = ExtResource("9_uv647")
 
 [node name="Herb Sources" parent="Documents" instance=ExtResource("6_sct4c")]
@@ -207,6 +294,15 @@ flat = true
 [connection signal="page_changed" from="Documents/Book" to="Documents" method="_on_book_page_changed"]
 [connection signal="button_down" from="Documents/Book/LeftButton" to="Documents/Book" method="_on_left_button_button_down"]
 [connection signal="button_down" from="Documents/Book/RightButton" to="Documents/Book" method="_on_right_button_button_down"]
+[connection signal="page_changed" from="Documents/TranslationsBook" to="Documents" method="_on_book_page_changed"]
+[connection signal="button_down" from="Documents/TranslationsBook/LeftButton" to="Documents/TranslationsBook" method="_on_left_button_button_down"]
+[connection signal="button_down" from="Documents/TranslationsBook/RightButton" to="Documents/TranslationsBook" method="_on_right_button_button_down"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line0" to="Documents/TranslationsBook" method="_on_line_0_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line1" to="Documents/TranslationsBook" method="_on_line_1_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line2" to="Documents/TranslationsBook" method="_on_line_2_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line3" to="Documents/TranslationsBook" method="_on_line_3_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line4" to="Documents/TranslationsBook" method="_on_line_4_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line5" to="Documents/TranslationsBook" method="_on_line_5_text_changed"]
 [connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/EnglishLabel" method="_on_left_text_button_down"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/SecretLabel" method="_on_left_text_button_down"]

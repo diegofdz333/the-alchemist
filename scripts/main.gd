@@ -21,6 +21,7 @@ func _on_submit_button_pressed():
 	var names = {}
 	for p in plants:
 		names[p.plant_name] = null
+	print(names)
 	if names == winning_plants:
 		print("win!")
 	else:

@@ -1,27 +1,33 @@
-[gd_scene load_steps=29 format=3 uid="uid://c6c12xvctpfc2"]
+[gd_scene load_steps=35 format=3 uid="uid://c6c12xvctpfc2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
+[ext_resource type="AudioStream" uid="uid://tifoisvalf6e" path="res://assets/music/Botanical Brewery.mp3" id="2_qdvx0"]
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ckp7n13l86t17" path="res://assets/documents/unburntLetter.png" id="4_d8ovf"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
 [ext_resource type="Texture2D" uid="uid://cjms1wtsnkkq0" path="res://assets/documents/burntLetter.png" id="5_4eq1o"]
-[ext_resource type="Texture2D" uid="uid://hujnfrc0ntxv" path="res://assets/plants/starbloom.png" id="5_qwc3g"]
-[ext_resource type="Texture2D" uid="uid://bcrpyddfe1fsw" path="res://assets/plants/ashthorn.png" id="6_0fnmv"]
-[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
-[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://scenes/Document.tscn" id="6_sct4c"]
-[ext_resource type="Texture2D" path="res://assets/documents/book-page-0.png" id="7_1wq1i"]
+[ext_resource type="Texture2D" uid="uid://bcrpyddfe1fsw" path="res://assets/plants/ashthorn.png" id="6_0nb7p"]
+[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://DocumentMenu.tscn" id="6_lgqyx"]
+[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://Document.tscn" id="6_sct4c"]
+[ext_resource type="Texture2D" uid="uid://bncrq8qe0wpcu" path="res://assets/documents/book/book-page-0.png" id="7_1wq1i"]
 [ext_resource type="PackedScene" uid="uid://b6e5mddcrrd11" path="res://scenes/Cauldron.tscn" id="7_lg7qs"]
-[ext_resource type="Texture2D" uid="uid://cuxq5d0s5xxe5" path="res://assets/plants/duskwither.png" id="7_tvtq5"]
-[ext_resource type="Texture2D" uid="uid://ji4d55cw0bht" path="res://assets/plants/emberroot.png" id="8_6si64"]
+[ext_resource type="Texture2D" uid="uid://cuxq5d0s5xxe5" path="res://assets/plants/duskwither.png" id="7_ope4d"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 [ext_resource type="Texture2D" uid="uid://cdajpqcljhsrr" path="res://assets/textBar.png" id="8_fxjid"]
+[ext_resource type="Texture2D" uid="uid://ji4d55cw0bht" path="res://assets/plants/emberroot.png" id="8_qysd3"]
 [ext_resource type="Script" path="res://scripts/book.gd" id="8_uy8em"]
-[ext_resource type="Texture2D" uid="uid://c4if6jmmbxeda" path="res://assets/plants/spiritwood.png" id="9_jpeod"]
 [ext_resource type="Script" path="res://scripts/book_button.gd" id="9_uv647"]
+[ext_resource type="Texture2D" uid="uid://c4if6jmmbxeda" path="res://assets/plants/spiritwood.png" id="9_ywqqd"]
 [ext_resource type="LabelSettings" uid="uid://dvbui4870kuc" path="res://resources/secret_label_settings.tres" id="10_3cly0"]
-[ext_resource type="Texture2D" uid="uid://ctbpjbhaiqo8r" path="res://assets/plants/walkingtoad.png" id="10_g87fe"]
+[ext_resource type="Texture2D" uid="uid://b7sijfyusgtg8" path="res://assets/documents/herb-sources.png" id="10_5825u"]
+[ext_resource type="Texture2D" uid="uid://hujnfrc0ntxv" path="res://assets/plants/starbloom.png" id="10_gm714"]
+[ext_resource type="Texture2D" uid="uid://b1xpxyf5vqnbd" path="res://assets/documents/map.png" id="11_553rl"]
+[ext_resource type="Texture2D" uid="uid://ctbpjbhaiqo8r" path="res://assets/plants/walkingtoad.png" id="11_gthcs"]
+[ext_resource type="Texture2D" uid="uid://buxma5mjdp01q" path="res://assets/documents/translations/translations-0.png" id="11_pdu1p"]
+[ext_resource type="Script" path="res://scripts/translation_book.gd" id="12_5014t"]
 [ext_resource type="PackedScene" uid="uid://cxfcyyca6olrd" path="res://scenes/PlantMenu.tscn" id="12_cwajq"]
+[ext_resource type="Texture2D" uid="uid://1tydn0godjno" path="res://assets/documents/note.png" id="12_t862x"]
 [ext_resource type="PackedScene" uid="uid://djxpfrsbnn7x7" path="res://scenes/Plant.tscn" id="13_m0xuo"]
 [ext_resource type="Script" path="res://scripts/plant_handler.gd" id="16_mql5o"]
 [ext_resource type="Texture2D" uid="uid://c0kt4hkgoxpup" path="res://assets/plants/submit_button.png" id="25_3600f"]
@@ -36,6 +42,12 @@ outline_color = Color(0, 0, 0, 1)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_478tm")
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-1, 0)
+stream = ExtResource("2_qdvx0")
+autoplay = true
+parameters/looping = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Cauldron" parent="." instance=ExtResource("7_lg7qs")]
@@ -43,55 +55,46 @@ script = ExtResource("1_478tm")
 [node name="Plants" type="Node" parent="."]
 script = ExtResource("16_mql5o")
 
-[node name="Plant" parent="Plants" instance=ExtResource("13_m0xuo")]
+[node name="Ashthorn" parent="Plants" instance=ExtResource("13_m0xuo")]
 position = Vector2(224, -82)
-plant_name = "Starbloom"
-small_texture = ExtResource("5_qwc3g")
-
-[node name="Plant2" parent="Plants" instance=ExtResource("13_m0xuo")]
-position = Vector2(466, -44)
-texture = ExtResource("6_0fnmv")
+texture = ExtResource("6_0nb7p")
 plant_name = "Ashthorn"
-small_texture = ExtResource("6_0fnmv")
+small_texture = ExtResource("6_0nb7p")
 
-[node name="Plant3" parent="Plants" instance=ExtResource("13_m0xuo")]
-position = Vector2(602, -94)
-texture = ExtResource("7_tvtq5")
+[node name="Duskwither" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(466, -44)
+texture = ExtResource("7_ope4d")
 plant_name = "Duskwither"
-small_texture = ExtResource("7_tvtq5")
+small_texture = ExtResource("7_ope4d")
 
-[node name="Plant4" parent="Plants" instance=ExtResource("13_m0xuo")]
-position = Vector2(614, 48)
-texture = ExtResource("8_6si64")
+[node name="Emberroot" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(602, -94)
+texture = ExtResource("8_qysd3")
 plant_name = "Emberroot"
-small_texture = ExtResource("8_6si64")
+small_texture = ExtResource("8_qysd3")
 
-[node name="Plant5" parent="Plants" instance=ExtResource("13_m0xuo")]
-position = Vector2(360, 142)
-texture = ExtResource("9_jpeod")
+[node name="Spiritwood" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(614, 48)
+texture = ExtResource("9_ywqqd")
 plant_name = "Spiritwood"
-small_texture = ExtResource("9_jpeod")
+small_texture = ExtResource("9_ywqqd")
 
-[node name="Plant6" parent="Plants" instance=ExtResource("13_m0xuo")]
+[node name="Starbloom" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(360, 142)
+plant_name = "Starbloom"
+small_texture = ExtResource("10_gm714")
+
+[node name="Walking Toad" parent="Plants" instance=ExtResource("13_m0xuo")]
 position = Vector2(213, 275)
-texture = ExtResource("10_g87fe")
+texture = ExtResource("11_gthcs")
 plant_name = "Walking Toad"
-small_texture = ExtResource("10_g87fe")
+small_texture = ExtResource("11_gthcs")
 
 [node name="PlantMenu" parent="." instance=ExtResource("12_cwajq")]
 position = Vector2(534, 24)
 
 [node name="Documents" type="Node" parent="."]
 script = ExtResource("1_bl5sq")
-
-[node name="Dummy-letter4" parent="Documents" instance=ExtResource("6_sct4c")]
-position = Vector2(83, -176)
-
-[node name="Dummy-letter3" parent="Documents" instance=ExtResource("6_sct4c")]
-position = Vector2(-241, -84)
-
-[node name="Dummy-letter2" parent="Documents" instance=ExtResource("6_sct4c")]
-position = Vector2(-176, 123)
 
 [node name="Unburnt Letter" parent="Documents" instance=ExtResource("6_sct4c")]
 position = Vector2(31, 141)
@@ -121,7 +124,7 @@ position = Vector2(-139, -86)
 scale = Vector2(1, 1)
 texture = ExtResource("7_1wq1i")
 script = ExtResource("8_uy8em")
-pages = Array[String]([])
+pages = Array[String](["res://assets/documents/book/book-page-0.png", "res://assets/documents/book/book-page-1.png", "res://assets/documents/book/book-page-2.png", "res://assets/documents/book/book-page-4.png"])
 text = "@Page
 E
 @Page
@@ -139,6 +142,7 @@ c
 d
 "
 isEnglish = false
+small_texture = ExtResource("7_1wq1i")
 
 [node name="LeftButton" type="Button" parent="Documents/Book"]
 anchors_preset = 4
@@ -166,6 +170,109 @@ grow_horizontal = 0
 grow_vertical = 2
 text = ">"
 script = ExtResource("9_uv647")
+
+[node name="TranslationsBook" parent="Documents" instance=ExtResource("6_sct4c")]
+z_index = 1
+position = Vector2(316, 95)
+scale = Vector2(1, 1)
+texture = ExtResource("11_pdu1p")
+script = ExtResource("12_5014t")
+pages = Array[String](["res://assets/documents/translations/translations-0.png", "res://assets/documents/translations/translations-1.png", "res://assets/documents/translations/translations-2.png", "res://assets/documents/translations/translations-3.png", "res://assets/documents/translations/translations-4.png"])
+text = "@Page
+@Page
+@Page
+@Page
+@Page"
+small_texture = ExtResource("11_pdu1p")
+
+[node name="LeftButton" type="Button" parent="Documents/TranslationsBook"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -228.5
+offset_right = -69.0
+offset_bottom = -28.5
+grow_vertical = 2
+text = "<"
+script = ExtResource("9_uv647")
+
+[node name="RightButton" type="Button" parent="Documents/TranslationsBook"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -228.5
+offset_right = -94.0
+offset_bottom = -28.5
+grow_horizontal = 0
+grow_vertical = 2
+text = ">"
+script = ExtResource("9_uv647")
+
+[node name="Line0" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -104.665
+offset_right = 59.0
+offset_bottom = -73.665
+script = ExtResource("9_uv647")
+
+[node name="Line1" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -70.165
+offset_right = 59.0
+offset_bottom = -39.165
+script = ExtResource("9_uv647")
+
+[node name="Line2" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -38.565
+offset_right = 59.0
+offset_bottom = -7.565
+script = ExtResource("9_uv647")
+
+[node name="Line3" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = -6.605
+offset_right = 59.0
+offset_bottom = 24.395
+script = ExtResource("9_uv647")
+
+[node name="Line4" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = 27.705
+offset_right = 59.0
+offset_bottom = 58.705
+script = ExtResource("9_uv647")
+
+[node name="Line5" type="LineEdit" parent="Documents/TranslationsBook"]
+offset_left = -41.0
+offset_top = 65.42
+offset_right = 59.0
+offset_bottom = 96.42
+script = ExtResource("9_uv647")
+
+[node name="Herb Sources" parent="Documents" instance=ExtResource("6_sct4c")]
+position = Vector2(353, -107)
+scale = Vector2(1, 1)
+texture = ExtResource("10_5825u")
+
+[node name="Map" parent="Documents" instance=ExtResource("6_sct4c")]
+scale = Vector2(1, 1)
+texture = ExtResource("11_553rl")
+text = "e
+h
+g"
+small_texture = ExtResource("11_553rl")
+
+[node name="Note" parent="Documents" instance=ExtResource("6_sct4c")]
+position = Vector2(271, 141)
+scale = Vector2(1, 1)
+texture = ExtResource("12_t862x")
+text = "QG,PA"
+small_texture = ExtResource("12_t862x")
 
 [node name="DocumentMenu" parent="." instance=ExtResource("6_lgqyx")]
 z_index = 40
@@ -258,6 +365,15 @@ texture_hover = ExtResource("27_4qboj")
 [connection signal="page_changed" from="Documents/Book" to="Documents" method="_on_book_page_changed"]
 [connection signal="button_down" from="Documents/Book/LeftButton" to="Documents/Book" method="_on_left_button_button_down"]
 [connection signal="button_down" from="Documents/Book/RightButton" to="Documents/Book" method="_on_right_button_button_down"]
+[connection signal="page_changed" from="Documents/TranslationsBook" to="Documents" method="_on_book_page_changed"]
+[connection signal="button_down" from="Documents/TranslationsBook/LeftButton" to="Documents/TranslationsBook" method="_on_left_button_button_down"]
+[connection signal="button_down" from="Documents/TranslationsBook/RightButton" to="Documents/TranslationsBook" method="_on_right_button_button_down"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line0" to="Documents/TranslationsBook" method="_on_line_0_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line1" to="Documents/TranslationsBook" method="_on_line_1_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line2" to="Documents/TranslationsBook" method="_on_line_2_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line3" to="Documents/TranslationsBook" method="_on_line_3_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line4" to="Documents/TranslationsBook" method="_on_line_4_text_changed"]
+[connection signal="text_changed" from="Documents/TranslationsBook/Line5" to="Documents/TranslationsBook" method="_on_line_5_text_changed"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/EnglishLabel" method="_on_left_text_button_down"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/SecretLabel" method="_on_left_text_button_down"]
 [connection signal="button_down" from="TestBar/RightText" to="TestBar/EnglishLabel" method="_on_right_text_button_down"]

@@ -19,8 +19,12 @@ func _process(delta):
 		prev_is_selected = is_selected;
 		var children = get_children();
 		for child in children:
-			if child is Button or page > 0 or not is_selected:
+			if child is Button:
 				child.change_selected(is_selected);
+			else:
+				if not is_selected:
+					child.release_focus();
+				child.change_selected(page > 0);
 
 
 func get_text():
@@ -41,11 +45,10 @@ func change_page(page_):
 		texture = load(pages[page])
 		var children = get_children();
 		for child in children:
-			if page > 0:
+			if child is Button:
 				child.change_selected(is_selected);
 			else:
-				if child is LineEdit:
-					child.change_selected(false);
+				child.change_selected(page > 0);
 
 
 func _on_right_button_button_down():

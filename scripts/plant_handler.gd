@@ -53,7 +53,6 @@ func refresh_z_indeces():
 	cauldron.z_index = $"../Cauldron".CAULDRON_Z
 	if cauldron.in_menu or cauldron.is_dragging:
 		cauldron.z_index += ($"../PlantMenu".PLANT_MENU_Z)
-	print(cauldron.z_index)
 	for i in range(0, max_z):
 		# Higher z index is closer to screen
 		var p: Sprite2D = plant_ordering[i];

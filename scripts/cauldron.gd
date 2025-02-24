@@ -57,9 +57,11 @@ func pos_in_cauldron(pos):
 
 func _on_plant_dropped(plant):
 	if in_menu:
-		#if plant in plants:
-			#plant.in_cauldron = false
-			#plants.erase(plant)
+		return
+	if $"../PlantMenu".expanded and $"../PlantMenu".pos_in_menu(plant.position):
+		if plant.in_cauldron:
+			plant.in_cauldron = false
+			plants.erase(plant)
 		return
 	if plant not in plants and pos_in_cauldron(plant.position):
 		# added to cauldron
@@ -67,7 +69,6 @@ func _on_plant_dropped(plant):
 		plants[plant] = null
 	elif plant in plants and not pos_in_cauldron(plant.position):
 		# removed from cauldron
-		print("hey")
 		plant.in_cauldron = false
 		plants.erase(plant)
 	

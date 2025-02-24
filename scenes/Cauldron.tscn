@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6e5mddcrrd11"]
+
+[ext_resource type="Script" path="res://scripts/cauldron.gd" id="1_k7jbu"]
+[ext_resource type="Texture2D" uid="uid://pemdbobsq0ls" path="res://assets/wok.png" id="1_lwe72"]
+
+[node name="Cauldron" type="Sprite2D"]
+texture = ExtResource("1_lwe72")
+script = ExtResource("1_k7jbu")
+small_texture = ExtResource("1_lwe72")

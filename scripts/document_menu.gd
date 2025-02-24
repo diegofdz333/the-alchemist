@@ -1,7 +1,5 @@
 extends Area2D
 
-signal expand_button_pressed()
-
 ## number of rows for placing docs
 @export var rows: int = 5 
 ## number of columns for placing docs
@@ -115,6 +113,9 @@ func reposition(doc):
 
 
 func _on_expand_button_pressed():
-	expand_button_pressed.emit()
+	if expanded:
+		position = retracted_pos
+	else:
+		position = expanded_pos
 	expanded = not expanded
 	update_documents()

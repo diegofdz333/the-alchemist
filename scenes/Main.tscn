@@ -1,20 +1,25 @@
-[gd_scene load_steps=17 format=3 uid="uid://de0bxnxrfky8a"]
+[gd_scene load_steps=22 format=3 uid="uid://c6c12xvctpfc2"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_478tm"]
 [ext_resource type="Script" path="res://scripts/documents_handler.gd" id="1_bl5sq"]
-[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://Document.tscn" id="2_2uoe8"]
 [ext_resource type="Texture2D" uid="uid://ca4vyoeydh6ex" path="res://assets/table.png" id="3_f8pjf"]
 [ext_resource type="Texture2D" uid="uid://ckp7n13l86t17" path="res://assets/documents/unburntLetter.png" id="4_d8ovf"]
 [ext_resource type="Texture2D" uid="uid://bggqqjhi6lura" path="res://assets/bricks.png" id="4_gd8ix"]
 [ext_resource type="Texture2D" uid="uid://cjms1wtsnkkq0" path="res://assets/documents/burntLetter.png" id="5_4eq1o"]
-[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://DocumentMenu.tscn" id="6_lgqyx"]
-[ext_resource type="PackedScene" path="res://scenes/Document.tscn" id="6_sct4c"]
+[ext_resource type="PackedScene" uid="uid://b5fis15vkrthn" path="res://scenes/DocumentMenu.tscn" id="6_lgqyx"]
+[ext_resource type="PackedScene" uid="uid://dml2o4mtpde67" path="res://scenes/Document.tscn" id="6_sct4c"]
 [ext_resource type="Texture2D" uid="uid://bncrq8qe0wpcu" path="res://assets/documents/book-page-0.png" id="7_1wq1i"]
+[ext_resource type="PackedScene" uid="uid://b6e5mddcrrd11" path="res://scenes/Cauldron.tscn" id="7_lg7qs"]
 [ext_resource type="Script" path="res://scripts/text_popup.gd" id="8_axhao"]
 [ext_resource type="Texture2D" uid="uid://cdajpqcljhsrr" path="res://assets/textBar.png" id="8_fxjid"]
 [ext_resource type="Script" path="res://scripts/book.gd" id="8_uy8em"]
 [ext_resource type="Script" path="res://scripts/book_button.gd" id="9_uv647"]
 [ext_resource type="LabelSettings" uid="uid://dvbui4870kuc" path="res://resources/secret_label_settings.tres" id="10_3cly0"]
+[ext_resource type="PackedScene" uid="uid://cxfcyyca6olrd" path="res://scenes/PlantMenu.tscn" id="12_cwajq"]
+[ext_resource type="PackedScene" path="res://scenes/Plant.tscn" id="13_m0xuo"]
+[ext_resource type="Texture2D" uid="uid://y82niwuxx1im" path="res://assets/plants/leaf.png" id="14_hvh61"]
+[ext_resource type="Texture2D" uid="uid://f1bs0wqm05im" path="res://assets/plants/leaf_selected.png" id="15_ug3ac"]
+[ext_resource type="Script" path="res://scripts/plant_handler.gd" id="16_mql5o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_na3qj"]
 font_size = 22
@@ -26,10 +31,69 @@ script = ExtResource("1_478tm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
+[node name="Cauldron" parent="." instance=ExtResource("7_lg7qs")]
+
+[node name="Plants" type="Node" parent="."]
+script = ExtResource("16_mql5o")
+
+[node name="Plant" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(224, -82)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_hvh61")
+plant_name = "Starbloom"
+small_texture = ExtResource("15_ug3ac")
+
+[node name="Plant2" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(466, -44)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_hvh61")
+plant_name = "Ashthorn"
+small_texture = ExtResource("15_ug3ac")
+
+[node name="Plant3" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(602, -94)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_hvh61")
+plant_name = "Duskwither"
+small_texture = ExtResource("15_ug3ac")
+
+[node name="Plant4" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(614, 48)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_hvh61")
+plant_name = "Emberroot"
+small_texture = ExtResource("15_ug3ac")
+
+[node name="Plant5" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(360, 142)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_hvh61")
+plant_name = "Spiritwood"
+small_texture = ExtResource("15_ug3ac")
+
+[node name="Plant6" parent="Plants" instance=ExtResource("13_m0xuo")]
+position = Vector2(213, 275)
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("14_hvh61")
+plant_name = "Walking Toad"
+small_texture = ExtResource("15_ug3ac")
+
+[node name="PlantMenu" parent="." instance=ExtResource("12_cwajq")]
+position = Vector2(534, 24)
+
 [node name="Documents" type="Node" parent="."]
 script = ExtResource("1_bl5sq")
 
-[node name="Unburnt Letter" parent="Documents" instance=ExtResource("2_2uoe8")]
+[node name="Dummy-letter4" parent="Documents" instance=ExtResource("6_sct4c")]
+position = Vector2(83, -176)
+
+[node name="Dummy-letter3" parent="Documents" instance=ExtResource("6_sct4c")]
+position = Vector2(-241, -84)
+
+[node name="Dummy-letter2" parent="Documents" instance=ExtResource("6_sct4c")]
+position = Vector2(-176, 123)
+
+[node name="Unburnt Letter" parent="Documents" instance=ExtResource("6_sct4c")]
 position = Vector2(31, 141)
 scale = Vector2(1, 1)
 texture = ExtResource("4_d8ovf")
@@ -41,7 +105,7 @@ BdKA
 E"
 isEnglish = false
 
-[node name="Burnt Letter" parent="Documents" instance=ExtResource("2_2uoe8")]
+[node name="Burnt Letter" parent="Documents" instance=ExtResource("6_sct4c")]
 position = Vector2(226, 60)
 scale = Vector2(1, 1)
 texture = ExtResource("5_4eq1o")
@@ -102,6 +166,10 @@ grow_vertical = 2
 text = ">"
 script = ExtResource("9_uv647")
 
+[node name="DocumentMenu" parent="." instance=ExtResource("6_lgqyx")]
+z_index = 40
+position = Vector2(-561, 16)
+
 [node name="Table" type="Sprite2D" parent="."]
 z_index = -5
 texture = ExtResource("3_f8pjf")
@@ -109,10 +177,6 @@ texture = ExtResource("3_f8pjf")
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -100
 texture = ExtResource("4_gd8ix")
-
-[node name="DocumentMenu" parent="." instance=ExtResource("6_lgqyx")]
-z_index = 40
-position = Vector2(-561, 16)
 
 [node name="TestBar" type="Sprite2D" parent="."]
 position = Vector2(0, -288)
@@ -171,13 +235,19 @@ offset_bottom = 14.0
 text = ">"
 flat = true
 
+[connection signal="cauldron_dropped" from="Plants" to="PlantMenu" method="_on_cauldron_dropped"]
+[connection signal="cauldron_dropped" from="Plants" to="Documents" method="_on_cauldron_dropped"]
+[connection signal="dragging" from="Plants" to="Documents" method="_on_plants_dragging"]
+[connection signal="plant_dropped" from="Plants" to="Cauldron" method="_on_plant_dropped"]
+[connection signal="plant_dropped" from="Plants" to="PlantMenu" method="_on_plant_dropped"]
+[connection signal="plant_dropped" from="Plants" to="Documents" method="_on_plant_dropped"]
+[connection signal="submit" from="PlantMenu" to="." method="_on_plant_menu_submit"]
 [connection signal="dropped" from="Documents" to="DocumentMenu" method="_on_documents_dropped"]
 [connection signal="selected_document_changed" from="Documents" to="TestBar/EnglishLabel" method="_on_documents_selected_document_changed"]
 [connection signal="selected_document_changed" from="Documents" to="TestBar/SecretLabel" method="_on_documents_selected_document_changed"]
 [connection signal="page_changed" from="Documents/Book" to="Documents" method="_on_book_page_changed"]
 [connection signal="button_down" from="Documents/Book/LeftButton" to="Documents/Book" method="_on_left_button_button_down"]
 [connection signal="button_down" from="Documents/Book/RightButton" to="Documents/Book" method="_on_right_button_button_down"]
-[connection signal="expand_button_pressed" from="DocumentMenu" to="." method="_on_document_menu_expand_button_pressed"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/EnglishLabel" method="_on_left_text_button_down"]
 [connection signal="button_down" from="TestBar/LeftText" to="TestBar/SecretLabel" method="_on_left_text_button_down"]
 [connection signal="button_down" from="TestBar/RightText" to="TestBar/EnglishLabel" method="_on_right_text_button_down"]

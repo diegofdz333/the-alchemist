@@ -7,3 +7,9 @@
 texture = ExtResource("1_lwe72")
 script = ExtResource("1_k7jbu")
 small_texture = ExtResource("1_lwe72")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -574.0
+offset_top = -296.0
+offset_right = -444.0
+offset_bottom = -221.0

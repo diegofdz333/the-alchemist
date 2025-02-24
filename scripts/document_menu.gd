@@ -29,6 +29,13 @@ func _ready():
 	for r in range(rows):
 		for c in range(cols):
 			occupied[Vector2(r, c)] = false
+	var doc_arr = $"../Documents".get_children()
+	for doc in doc_arr:
+		doc.in_menu = true
+		doc.texture = doc.small_texture
+		rescale(doc)
+		reposition(doc)
+	update_documents()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
